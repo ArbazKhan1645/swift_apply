@@ -139,7 +139,7 @@ class _FilterChip extends StatelessWidget {
     return ChoiceChip(
       selected: selected,
       label: Text(label),
-      selectedColor: AppTheme.accent.withValues(alpha: 0.22),
+      selectedColor: AppTheme.accent.withOpacity(0.22),
       backgroundColor: AppTheme.surfaceAlt,
       labelStyle: TextStyle(
         color: selected ? AppTheme.textPrimary : AppTheme.textSecondary,
@@ -166,7 +166,7 @@ class _HistoryTile extends StatelessWidget {
             height: 42,
             decoration: BoxDecoration(
               color: (item.isEmail ? AppTheme.accent : AppTheme.whatsappGreen)
-                  .withValues(alpha: 0.12),
+                  .withOpacity(0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(

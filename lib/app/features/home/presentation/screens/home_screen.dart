@@ -618,7 +618,7 @@ class _HomeScreenState extends State<HomeScreen>
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: selectedCv != null
-                      ? AppTheme.accent.withValues(alpha: 0.5)
+                      ? AppTheme.accent.withOpacity(0.5)
                       : AppTheme.border,
                 ),
               ),
@@ -627,7 +627,7 @@ class _HomeScreenState extends State<HomeScreen>
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppTheme.accent.withValues(alpha: 0.1),
+                      color: AppTheme.accent.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(

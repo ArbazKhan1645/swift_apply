@@ -42,9 +42,7 @@ class _CvPickerSheetState extends State<CvPickerSheet> {
   Future<void> _shareCv(CvFile cv) async {
     final file = File(cv.path);
     if (await file.exists()) {
-      await SharePlus.instance.share(
-        ShareParams(files: [XFile(cv.path)], text: cv.name),
-      );
+      await Share.shareXFiles([XFile(cv.path)], text: cv.name);
     } else {
       if (mounted) {
         showSnack(context, 'File not found on device', isError: true);
@@ -152,7 +150,7 @@ class _CvPickerSheetState extends State<CvPickerSheet> {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: AppTheme.accent.withValues(alpha: 0.12),
+                              color: AppTheme.accent.withOpacity(0.12),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Icon(

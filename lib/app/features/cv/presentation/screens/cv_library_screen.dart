@@ -133,7 +133,7 @@ class _CvTile extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: AppTheme.accent.withValues(alpha: 0.12),
+              color: AppTheme.accent.withOpacity(0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Icon(
@@ -179,9 +179,7 @@ class _CvTile extends StatelessWidget {
             onSelected: (value) async {
               switch (value) {
                 case 'share':
-                  await SharePlus.instance.share(
-                    ShareParams(files: [XFile(cv.path)], text: cv.name),
-                  );
+                  await Share.shareXFiles([XFile(cv.path)], text: cv.name);
                   break;
                 case 'rename':
                   onRename();
