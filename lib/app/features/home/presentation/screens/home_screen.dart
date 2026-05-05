@@ -424,13 +424,13 @@ class _HomeScreenState extends State<HomeScreen>
       padding: const EdgeInsets.only(bottom: 16),
       child: GlassCard(
         padding: const EdgeInsets.all(12),
-        borderColor: AppTheme.accentAlt.withValues(alpha: 0.5),
+        borderColor: AppTheme.accentAlt.withOpacity(0.5),
         child: Row(
           children: [
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppTheme.accentAlt.withValues(alpha: 0.1),
+                color: AppTheme.accentAlt.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
@@ -487,7 +487,7 @@ class _HomeScreenState extends State<HomeScreen>
             width: 38,
             height: 38,
             decoration: BoxDecoration(
-              color: AppTheme.accentAlt.withValues(alpha: 0.12),
+              color: AppTheme.accentAlt.withOpacity(0.12),
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Icon(
@@ -537,7 +537,7 @@ class _HomeScreenState extends State<HomeScreen>
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: AppTheme.error.withValues(alpha: 0.1),
+          color: AppTheme.error.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: const Row(
@@ -579,9 +579,9 @@ class _HomeScreenState extends State<HomeScreen>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.08),
+        color: color.withOpacity(0.08),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withValues(alpha: 0.2)),
+        border: Border.all(color: color.withOpacity(0.2)),
       ),
       child: Row(
         children: [
@@ -618,7 +618,7 @@ class _HomeScreenState extends State<HomeScreen>
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: selectedCv != null
-                      ? AppTheme.accent.withValues(alpha: 0.5)
+                      ? AppTheme.accent.withOpacity(0.5)
                       : AppTheme.border,
                 ),
               ),
@@ -627,7 +627,7 @@ class _HomeScreenState extends State<HomeScreen>
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppTheme.accent.withValues(alpha: 0.1),
+                      color: AppTheme.accent.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(

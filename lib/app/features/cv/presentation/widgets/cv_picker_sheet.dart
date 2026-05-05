@@ -150,7 +150,7 @@ class _CvPickerSheetState extends State<CvPickerSheet> {
                           Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                              color: AppTheme.accent.withValues(alpha: 0.12),
+                              color: AppTheme.accent.withOpacity(0.12),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Icon(

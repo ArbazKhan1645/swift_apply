@@ -319,7 +319,7 @@ class _JobLeadTile extends StatelessWidget {
             children: [
               Expanded(
                 child: DropdownButtonFormField<JobLeadStatus>(
-                  initialValue: lead.status,
+                  value: lead.status,
                   dropdownColor: AppTheme.surface,
                   decoration: const InputDecoration(labelText: 'Status'),
                   items: JobLeadStatus.values
@@ -338,7 +338,7 @@ class _JobLeadTile extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: DropdownButtonFormField<JobLeadPriority>(
-                  initialValue: lead.priority,
+                  value: lead.priority,
                   dropdownColor: AppTheme.surface,
                   decoration: const InputDecoration(labelText: 'Priority'),
                   items: JobLeadPriority.values
@@ -385,7 +385,7 @@ class _StatusChip extends StatelessWidget {
     return ChoiceChip(
       selected: selected,
       label: Text(label),
-      selectedColor: AppTheme.accent.withValues(alpha: 0.22),
+      selectedColor: AppTheme.accent.withOpacity(0.22),
       backgroundColor: AppTheme.surfaceAlt,
       labelStyle: TextStyle(
         color: selected ? AppTheme.textPrimary : AppTheme.textSecondary,
@@ -660,7 +660,7 @@ class _LeadDetailsSheetState extends State<_LeadDetailsSheet> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<JobLeadStatus>(
-                    initialValue: status,
+                    value: status,
                     dropdownColor: AppTheme.surface,
                     decoration: const InputDecoration(
                       labelText: 'Status',
@@ -683,7 +683,7 @@ class _LeadDetailsSheetState extends State<_LeadDetailsSheet> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: DropdownButtonFormField<JobLeadPriority>(
-                    initialValue: priority,
+                    value: priority,
                     dropdownColor: AppTheme.surface,
                     decoration: const InputDecoration(
                       labelText: 'Priority',

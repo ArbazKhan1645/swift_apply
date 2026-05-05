@@ -400,7 +400,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _guidanceCard() {
     return GlassCard(
       padding: const EdgeInsets.all(16),
-      borderColor: AppTheme.accent.withValues(alpha: 0.3),
+      borderColor: AppTheme.accent.withOpacity(0.3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -439,7 +439,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: AppTheme.accent.withValues(alpha: 0.1),
+            color: AppTheme.accent.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, size: 18, color: AppTheme.accent),
