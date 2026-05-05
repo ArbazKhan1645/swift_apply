@@ -49,29 +49,29 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     child: CircularProgressIndicator(color: AppTheme.accent),
                   )
                 : provider.items.isEmpty
-                ? const _EmptyHistory()
-                : ListView.separated(
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
-                    itemCount: provider.visibleItems.length + 1,
-                    separatorBuilder: (_, index) => index == 0
-                        ? const SizedBox(height: 16)
-                        : const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return _HistoryFilters(provider: provider);
-                      }
-                      final item = provider.visibleItems[index - 1];
-                      return _HistoryTile(
-                        item: item,
-                        onDelete: () async {
-                          await provider.delete(item.id ?? 0);
-                          if (context.mounted) {
-                            showSnack(context, 'History item deleted');
+                    ? const _EmptyHistory()
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
+                        itemCount: provider.visibleItems.length + 1,
+                        separatorBuilder: (_, index) => index == 0
+                            ? const SizedBox(height: 16)
+                            : const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          if (index == 0) {
+                            return _HistoryFilters(provider: provider);
                           }
+                          final item = provider.visibleItems[index - 1];
+                          return _HistoryTile(
+                            item: item,
+                            onDelete: () async {
+                              await provider.delete(item.id ?? 0);
+                              if (context.mounted) {
+                                showSnack(context, 'History item deleted');
+                              }
+                            },
+                          );
                         },
-                      );
-                    },
-                  ),
+                      ),
           ),
         );
       },
@@ -139,7 +139,7 @@ class _FilterChip extends StatelessWidget {
     return ChoiceChip(
       selected: selected,
       label: Text(label),
-      selectedColor: AppTheme.accent.withOpacity(0.22),
+      selectedColor: AppTheme.accent.withValues(alpha: 0.22),
       backgroundColor: AppTheme.surfaceAlt,
       labelStyle: TextStyle(
         color: selected ? AppTheme.textPrimary : AppTheme.textSecondary,
@@ -166,7 +166,7 @@ class _HistoryTile extends StatelessWidget {
             height: 42,
             decoration: BoxDecoration(
               color: (item.isEmail ? AppTheme.accent : AppTheme.whatsappGreen)
-                  .withOpacity(0.12),
+                  .withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(

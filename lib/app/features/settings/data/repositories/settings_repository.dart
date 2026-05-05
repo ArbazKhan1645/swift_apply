@@ -12,7 +12,7 @@ class SettingsRepository {
     final db = await _db.database;
     final results = await db.query('settings', where: 'id = ?', whereArgs: [1]);
     if (results.isEmpty) {
-      return AppSettings(
+      return const AppSettings(
         senderName: '',
         senderEmail: '',
         emailPassword: '',

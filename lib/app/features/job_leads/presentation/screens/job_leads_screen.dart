@@ -39,9 +39,8 @@ class _JobLeadsScreenState extends State<JobLeadsScreen> {
   }
 
   void _apply(JobLead lead) {
-    final recipient = lead.contactEmail.isNotEmpty
-        ? lead.contactEmail
-        : lead.contactPhone;
+    final recipient =
+        lead.contactEmail.isNotEmpty ? lead.contactEmail : lead.contactPhone;
     final uri = Uri(
       path: AppRoute.home.path,
       queryParameters: {
@@ -84,37 +83,38 @@ class _JobLeadsScreenState extends State<JobLeadsScreen> {
                     child: CircularProgressIndicator(color: AppTheme.accent),
                   )
                 : provider.items.isEmpty
-                ? const _EmptyJobs()
-                : ListView.separated(
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
-                    itemCount: provider.visibleItems.length + 1,
-                    separatorBuilder: (_, index) => index == 0
-                        ? const SizedBox(height: 16)
-                        : const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      if (index == 0) {
-                        return _LeadToolbar(provider: provider);
-                      }
-                      final lead = provider.visibleItems[index - 1];
-                      return _JobLeadTile(
-                        lead: lead,
-                        onView: () => _openLeadDetails(lead),
-                        onApply: () => _apply(lead),
-                        onDelete: () async {
-                          await provider.delete(lead);
-                          if (context.mounted) {
-                            showSnack(context, 'Job deleted');
+                    ? const _EmptyJobs()
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
+                        itemCount: provider.visibleItems.length + 1,
+                        separatorBuilder: (_, index) => index == 0
+                            ? const SizedBox(height: 16)
+                            : const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          if (index == 0) {
+                            return _LeadToolbar(provider: provider);
                           }
+                          final lead = provider.visibleItems[index - 1];
+                          return _JobLeadTile(
+                            lead: lead,
+                            onView: () => _openLeadDetails(lead),
+                            onApply: () => _apply(lead),
+                            onDelete: () async {
+                              await provider.delete(lead);
+                              if (context.mounted) {
+                                showSnack(context, 'Job deleted');
+                              }
+                            },
+                            onStatus: (status) {
+                              provider.update(lead.copyWith(status: status));
+                            },
+                            onPriority: (priority) {
+                              provider
+                                  .update(lead.copyWith(priority: priority));
+                            },
+                          );
                         },
-                        onStatus: (status) {
-                          provider.update(lead.copyWith(status: status));
-                        },
-                        onPriority: (priority) {
-                          provider.update(lead.copyWith(priority: priority));
-                        },
-                      );
-                    },
-                  ),
+                      ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: AppTheme.accent,
@@ -247,8 +247,8 @@ class _JobLeadTile extends StatelessWidget {
     final contact = lead.contactEmail.isNotEmpty
         ? lead.contactEmail
         : lead.contactPhone.isNotEmpty
-        ? lead.contactPhone
-        : 'No contact extracted';
+            ? lead.contactPhone
+            : 'No contact extracted';
     return GlassCard(
       borderRadius: 14,
       onTap: onView,
@@ -385,7 +385,7 @@ class _StatusChip extends StatelessWidget {
     return ChoiceChip(
       selected: selected,
       label: Text(label),
-      selectedColor: AppTheme.accent.withOpacity(0.22),
+      selectedColor: AppTheme.accent.withValues(alpha: 0.22),
       backgroundColor: AppTheme.surfaceAlt,
       labelStyle: TextStyle(
         color: selected ? AppTheme.textPrimary : AppTheme.textSecondary,
@@ -483,8 +483,9 @@ class _EmptyJobs extends StatelessWidget {
     );
   }
 }
+
 class _PasteJobSheet extends StatefulWidget {
-  const _PasteJobSheet({super.key});
+  const _PasteJobSheet();
 
   @override
   State<_PasteJobSheet> createState() => _PasteJobSheetState();
@@ -545,7 +546,6 @@ class _LeadDetailsSheet extends StatefulWidget {
   final Function(JobLead) onApply;
 
   const _LeadDetailsSheet({
-    super.key,
     required this.lead,
     required this.onApply,
   });
@@ -660,7 +660,7 @@ class _LeadDetailsSheetState extends State<_LeadDetailsSheet> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<JobLeadStatus>(
-                    value: status,
+                    initialValue: status,
                     dropdownColor: AppTheme.surface,
                     decoration: const InputDecoration(
                       labelText: 'Status',
@@ -683,7 +683,7 @@ class _LeadDetailsSheetState extends State<_LeadDetailsSheet> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: DropdownButtonFormField<JobLeadPriority>(
-                    value: priority,
+                    initialValue: priority,
                     dropdownColor: AppTheme.surface,
                     decoration: const InputDecoration(
                       labelText: 'Priority',

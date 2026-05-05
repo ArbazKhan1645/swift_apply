@@ -30,10 +30,10 @@ class GlassCard extends StatelessWidget {
           child: Container(
             padding: padding ?? const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppTheme.surface.withOpacity(0.7),
+              color: AppTheme.surface.withValues(alpha: 0.7),
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: borderColor ?? AppTheme.border.withOpacity(0.5),
+                color: borderColor ?? AppTheme.border.withValues(alpha: 0.5),
                 width: 1,
               ),
             ),
@@ -110,14 +110,13 @@ class _AccentButtonState extends State<AccentButton>
           decoration: BoxDecoration(
             color: widget.outlined ? Colors.transparent : color,
             borderRadius: BorderRadius.circular(14),
-            border: widget.outlined
-                ? Border.all(color: color, width: 1.5)
-                : null,
+            border:
+                widget.outlined ? Border.all(color: color, width: 1.5) : null,
             boxShadow: widget.outlined
                 ? null
                 : [
                     BoxShadow(
-                      color: color.withOpacity(0.25),
+                      color: color.withValues(alpha: 0.25),
                       blurRadius: 16,
                       offset: const Offset(0, 6),
                     ),
@@ -199,9 +198,9 @@ class StatusChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.12),
+        color: color.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withOpacity(0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
