@@ -123,7 +123,7 @@ class _CvPickerSheetState extends State<CvPickerSheet> {
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 itemCount: _cvs.length,
-                separatorBuilder: (_, _) => const SizedBox(height: 8),
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
                 itemBuilder: (context, i) {
                   final cv = _cvs[i];
                   final selected = widget.selectedCv?.id == cv.id;

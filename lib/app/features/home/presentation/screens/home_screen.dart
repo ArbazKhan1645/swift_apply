@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:swift_apply/app/core/presentation/widgets/common_widget.dart';
 import 'package:swift_apply/app/core/theme/app_theme.dart';
 import 'package:swift_apply/app/features/cv/presentation/widgets/cv_picker_sheet.dart';
-import 'package:swift_apply/app/features/history/data/models/job_history_model.dart';
 import 'package:swift_apply/app/features/home/presentation/providers/home_provider.dart';
-import 'package:swift_apply/app/features/job_leads/data/models/job_lead_model.dart';
 import 'package:swift_apply/app/features/job_leads/presentation/providers/job_lead_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -88,9 +86,8 @@ class _HomeScreenState extends State<HomeScreen>
       fallbackPosition:
           context.read<HomeProvider>().settings?.targetPosition ?? '',
     );
-    _recipientController.text = lead.contactEmail.isNotEmpty
-        ? lead.contactEmail
-        : lead.contactPhone;
+    _recipientController.text =
+        lead.contactEmail.isNotEmpty ? lead.contactEmail : lead.contactPhone;
     _companyController.text = lead.company;
     _positionController.text = lead.position;
     setState(() => _clipboardContent = null);
@@ -105,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen>
     if (!(_formKey.currentState?.validate() ?? false)) return;
 
     final result = await context.read<HomeProvider>().sendApplication(
-      _recipientController.text,
-      company: _companyController.text,
-      position: _positionController.text,
-    );
+          _recipientController.text,
+          company: _companyController.text,
+          position: _positionController.text,
+        );
     if (!mounted) return;
 
     if (mounted) {
@@ -565,15 +562,13 @@ class _HomeScreenState extends State<HomeScreen>
 
     String label = '';
     if (isWhatsApp) {
-      final isApi =
-          settings?.waApiKey.isNotEmpty == true &&
+      final isApi = settings?.waApiKey.isNotEmpty == true &&
           settings?.waPhoneId.isNotEmpty == true;
       label = isApi
           ? 'Will send direct WhatsApp message (API)'
           : 'Will open WhatsApp (External)';
     } else {
-      final isSmtp =
-          settings?.senderEmail.isNotEmpty == true &&
+      final isSmtp = settings?.senderEmail.isNotEmpty == true &&
           settings?.emailPassword.isNotEmpty == true;
       label = isSmtp
           ? 'Will send direct Email (SMTP)'

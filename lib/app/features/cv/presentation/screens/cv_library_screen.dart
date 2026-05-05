@@ -67,31 +67,31 @@ class _CvLibraryScreenState extends State<CvLibraryScreen> {
                     child: CircularProgressIndicator(color: AppTheme.accent),
                   )
                 : provider.items.isEmpty
-                ? const _EmptyCvLibrary()
-                : ListView.separated(
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
-                    itemCount: provider.items.length,
-                    separatorBuilder: (_, _) => const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      final cv = provider.items[index];
-                      return _CvTile(
-                        cv: cv,
-                        onRename: () => _rename(cv),
-                        onDefault: () async {
-                          await provider.setDefault(cv);
-                          if (context.mounted) {
-                            showSnack(context, 'Default CV updated');
-                          }
+                    ? const _EmptyCvLibrary()
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(20, 12, 20, 96),
+                        itemCount: provider.items.length,
+                        separatorBuilder: (_, __) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          final cv = provider.items[index];
+                          return _CvTile(
+                            cv: cv,
+                            onRename: () => _rename(cv),
+                            onDefault: () async {
+                              await provider.setDefault(cv);
+                              if (context.mounted) {
+                                showSnack(context, 'Default CV updated');
+                              }
+                            },
+                            onDelete: () async {
+                              await provider.delete(cv);
+                              if (context.mounted) {
+                                showSnack(context, 'CV deleted');
+                              }
+                            },
+                          );
                         },
-                        onDelete: () async {
-                          await provider.delete(cv);
-                          if (context.mounted) {
-                            showSnack(context, 'CV deleted');
-                          }
-                        },
-                      );
-                    },
-                  ),
+                      ),
           ),
           floatingActionButton: FloatingActionButton.extended(
             backgroundColor: AppTheme.accent,
@@ -162,13 +162,11 @@ class _CvTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: cv.isDefault
-                        ? AppTheme.accentAlt
-                        : AppTheme.textMuted,
+                    color:
+                        cv.isDefault ? AppTheme.accentAlt : AppTheme.textMuted,
                     fontSize: 12,
-                    fontWeight: cv.isDefault
-                        ? FontWeight.w700
-                        : FontWeight.w400,
+                    fontWeight:
+                        cv.isDefault ? FontWeight.w700 : FontWeight.w400,
                   ),
                 ),
               ],
